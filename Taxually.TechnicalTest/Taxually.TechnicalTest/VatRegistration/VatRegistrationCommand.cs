@@ -16,6 +16,7 @@ namespace Taxually.TechnicalTest.VatRegistration
 
     public class VatRegistrationCommandHandler : IRequestHandler<VatRegistrationCommand>
     {
+        public const string ErrorMessage = "Country not supported";
         private readonly IEnumerable<IVatRegistrator> _vatRegistrators;
 
         public VatRegistrationCommandHandler(IEnumerable<IVatRegistrator> vatRegistrators)
@@ -32,7 +33,7 @@ namespace Taxually.TechnicalTest.VatRegistration
 
             if (specificRegistration == null)
             {
-                throw new Exception("Country not supported");
+                throw new Exception(ErrorMessage);
             }
 
             specificRegistration.Register(reg);
